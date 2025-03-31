@@ -1,0 +1,135 @@
+{
+  "name": "comment-block-highlighter",
+  "displayName": "Comment Block Highlighter",
+  "description": "Highlights code blocks between comment delimiters with customizable background colors",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "publisher": "KevinAndani",
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "comment-block-highlighter.toggle",
+        "title": "Toggle Comment Block Highlighting"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Comment Block Highlighter",
+      "properties": {
+        "commentBlockHighlighter.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable comment block highlighting"
+        },
+        "commentBlockHighlighter.colors": {
+          "type": "array",
+          "default": [
+            "rgba(255, 255, 64, 0.07)",
+            "rgba(127, 255, 127, 0.07)",
+            "rgba(255, 127, 255, 0.07)",
+            "rgba(79, 236, 236, 0.07)"
+          ],
+          "description": "Colors to use for highlighting comment blocks"
+        },
+        "commentBlockHighlighter.startPatterns": {
+          "type": "array",
+          "default": [
+            "^\\s*#\\s*(?:start|region|begin|START)",
+            "^\\s*//\\s*(?:start|region|begin|START)"
+          ],
+          "description": "Regex patterns to identify start of a comment block"
+        },
+        "commentBlockHighlighter.endPatterns": {
+          "type": "array",
+          "default": [
+            "^\\s*#\\s*(?:end|endregion|END)",
+            "^\\s*//\\s*(?:end|endregion|END)"
+          ],
+          "description": "Regex patterns to identify end of a comment block"
+        },
+        "commentBlockHighlighter.languagePatterns": {
+          "type": "object",
+          "default": {
+            "javascript,typescript,c,cpp,csharp,java": {
+              "startPatterns": [
+                "^\\s*//\\s*(?:start|region|begin|SECTION:\\s*📂.*begin)",
+                "^\\s*/\\*+\\s*(?:start|region|begin)"
+              ],
+              "endPatterns": [
+                "^\\s*//\\s*(?:end|endregion|SECTION:\\s*🔚.*end)",
+                "^\\s*/\\*+\\s*(?:end|endregion)\\s*\\*/"
+              ]
+            },
+            "python": {
+              "startPatterns": [
+                "^\\s*#\\s*(?:start|region|begin|SECTION:\\s*📂.*begin)"
+              ],
+              "endPatterns": [
+                "^\\s*#\\s*(?:end|endregion|SECTION:\\s*🔚.*end)"
+              ]
+            },
+            "html,xml,svg": {
+              "startPatterns": [
+                "^\\s*<!--\\s*(?:start|region|begin|SECTION:\\s*📂.*begin)"
+              ],
+              "endPatterns": [
+                "^\\s*<!--\\s*(?:end|endregion|SECTION:\\s*🔚.*end)\\s*-->"
+              ]
+            }
+          },
+          "description": "Language-specific patterns for section comments"
+        },
+        "commentBlockHighlighter.excludedLanguages": {
+          "type": "array",
+          "default": [],
+          "description": "Languages to exclude from comment block highlighting"
+        },
+        "commentBlockHighlighter.includeStartEndLines": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include start/end comment lines in the highlighting"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run lint",
+    "lint": "eslint .",
+    "test": "node ./test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/vscode": "^1.98.0",
+    "eslint": "^8.57.1",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.29.0"
+  },
+  "keywords": [
+    "section",
+    "highlight",
+    "region",
+    "comments",
+    "organize"
+  ],
+  "author": "",
+  "license": "ISC",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KevinAndani/vscode-section-highlighter"
+  },
+  "dependencies": {
+    "@vscode/vsce": "^3.3.2"
+  }
+}

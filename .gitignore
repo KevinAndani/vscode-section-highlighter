@@ -1,0 +1,39 @@
+# Build outputs
+*.vsix
+out/
+dist/
+lib/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+yarn-error.log
+
+# Test & coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Development artifacts
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+*.tsbuildinfo
+
+# IDE files (keep some .vscode files)
+.vscode/**
+.github/**
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.code-workspace
+.history/
+
+# Temporary files
+tmp/
+temp/
+.temp/
